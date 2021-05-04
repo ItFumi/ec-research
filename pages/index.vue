@@ -8,7 +8,42 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      // APIを叩いて返ってきたコンテンツを格納する用に空の配列を用意
+      siteItems: [],
+    }
+  },
+  mounted() {
+    // mount時にヘッダ一覧を取得する処理を実行
+    this.getSites()
+  },
+  methods: {
+    getSites() {
+      // Git管理しないAPIキーは、.envファイル内にて別途定義する
+      // オプションとして、コンテンツの最大取得件数は100件と設定
+      axios
+        .get('https://ec-research.microcms.io/api/v1/ecsite?limit=100', {
+          headers: { 'X-API-KEY': process.env.API_KEY }
+        })
+        .then((res) => {
+          // 取得したコンテンツをコンポーネントのdata内に格納
+          this.siteItems = res.data.contents
+          // 取得したアイテムをシャッフル
+          for (let i = this.siteItems.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1))
+            const tmp = this.siteItems[i]
+            this.siteItems[i] = this.siteItems[j]
+            this.siteItems[j] = tmp
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }
+}
 </script>
 
 <style>
