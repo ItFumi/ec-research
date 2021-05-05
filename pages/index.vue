@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -23,9 +24,8 @@ export default {
     getSites() {
       // Git管理しないAPIキーは、.envファイル内にて別途定義する
       // オプションとして、コンテンツの最大取得件数は100件と設定
-      axios
-        .get('https://ec-research.microcms.io/api/v1/ecsite?limit=100', {
-          headers: { 'X-API-KEY': process.env.API_KEY }
+      axios.get('https://ec-research.microcms.io/api/v1/ecsite', {
+          headers: { 'X-API-KEY': this.$config.apiKEY }
         })
         .then((res) => {
           // 取得したコンテンツをコンポーネントのdata内に格納
