@@ -1,9 +1,15 @@
 <template>
-  <div class="space-y-20 bg-amber">
-    <header class="mb-3.5 mx-auto py-3.5 px-0 text-center">
+  <div class="">
+    <header class="bg-amber mb-3.5 mx-auto py-3.5 px-0 text-center">
       <h1 class="font-normal text-3xl text-gray">ECサイト研究所</h1>
       <p class="text-sm">ECサイトのUI/UXを研究するサイト</p>
     </header>
+    <div class="font-main px-5" v-for="e in siteItems">
+      <a class="bg-gray block rounded-2xl md:w-1/3 p-4">
+        <img class="rounded-2xl" :src="e.image.url">
+        <span class="block mt-2.5 text-white text-2xl">{{e.title}}</span>
+      </a>
+    </div>
   </div>
 </template>
 
