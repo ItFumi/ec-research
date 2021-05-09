@@ -1,6 +1,6 @@
 <template>
   <div class="font-main">
-    <header class="bg-amber rounded-b-2xl mb-3.5 mx-auto py-3.5 px-7 text-left">
+    <header class="animate-fadeInTop bg-amber rounded-b-2xl mb-3.5 mx-auto py-3.5 px-7 text-left">
       <h1 class="font-bold text-3xl text-gray">EC Research</h1>
       <p class="text-sm">ECサイトのUI/UXを研究するサイト</p>
     </header>
@@ -12,6 +12,9 @@
         </a>
       </div>
     </div>
+    <footer class="bg-gray mt-3.5 p-7 relative rounded-t-2xl text-white">
+      <small>Copyright &copy; 2021 ItFumi</small>
+    </footer>
   </div>
 </template>
 
