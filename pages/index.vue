@@ -1,14 +1,16 @@
 <template>
-  <div class="">
-    <header class="bg-amber mb-3.5 mx-auto py-3.5 px-0 text-center">
-      <h1 class="font-normal text-3xl text-gray">ECサイト研究所</h1>
+  <div class="font-main">
+    <header class="bg-amber rounded-b-2xl mb-3.5 mx-auto py-3.5 px-7 text-left">
+      <h1 class="font-bold text-3xl text-gray">EC Research</h1>
       <p class="text-sm">ECサイトのUI/UXを研究するサイト</p>
     </header>
-    <div class="font-main px-5" v-for="e in siteItems">
-      <a class="bg-gray block rounded-2xl md:w-1/3 p-4">
-        <img class="rounded-2xl" :src="e.image.url">
-        <span class="block mt-2.5 text-white text-2xl">{{e.title}}</span>
-      </a>
+    <div class="flex flex-wrap px-5 mx-auto">
+      <div class="animate-contentsFadeIn md:w-1/3 p-2" v-for="(e, i) in siteItems" :style="{ 'animation-delay': `${i * 0.2}s` }">
+        <a :href="e.url" class="bg-gray block p-4 rounded-2xl">
+          <img class="rounded-2xl" :src="e.image.url">
+          <span class="animate-fadeInLeft block mt-2.5 font-bold text-white text-2xl" :style="{ 'animation-delay': `${i * 0.2}s` }">{{e.title}}</span>
+        </a>
+      </div>
     </div>
   </div>
 </template>
