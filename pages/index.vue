@@ -12,7 +12,7 @@
         </a>
       </div>
     </div>
-    <paginate :page-count="getPageCount" :click-handler="clickCallback"></paginate>
+    <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" v-model="currentPage" @change="clickCallback"></t-pagination>
     <footer class="bg-gray mt-3.5 p-7 relative rounded-t-2xl text-white">
       <small>Copyright &copy; 2021 ItFumi</small>
     </footer>
@@ -28,7 +28,7 @@ export default {
       // APIを叩いて返ってきたコンテンツを格納する用に空の配列を用意
       siteItemsInit: [],
       siteItems: [],
-      parPage: 6,
+      perPage: 6,
       currentPage: 1,
     }
   },
@@ -45,8 +45,8 @@ export default {
         .then((res) => {
           // 取得したコンテンツをコンポーネントのdata内に格納
           this.siteItemsInit = res.data.contents
-          let current = this.currentPage * this.parPage
-          let start = current - this.parPage
+          let current = this.currentPage * this.perPage
+          let start = current - this.perPage
           this.siteItems = res.data.contents.slice(start, current)
         })
         .catch((err) => {
@@ -54,15 +54,16 @@ export default {
         })
     },
     clickCallback: function (pageNum) {
+      console.log("あs")
       this.currentPage = Number(pageNum)
-      let current = this.currentPage * this.parPage
-      let start = current - this.parPage
+      let current = this.currentPage * this.perPage
+      let start = current - this.perPage
       this.siteItems = this.siteItemsInit.slice(start, current)
     }
   },
   computed: {
     getPageCount: function() {
-      return Math.ceil(this.siteItemsInit.length / this.parPage)
+      return Math.ceil(this.siteItemsInit.length / this.perPage)
     }
    }
 }

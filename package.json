@@ -9,9 +9,11 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.3.3",
     "axios": "^0.21.1",
     "core-js": "^3.9.1",
     "nuxt": "^2.15.3",
+    "vue-tailwind": "^2.4.2",
     "vuejs-paginate": "^2.1.0"
   },
   "devDependencies": {
