@@ -12,7 +12,7 @@
         </a>
       </div>
     </div>
-    <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" v-model="currentPage" @change="clickCallback"></t-pagination>
+    <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" prevLabel="◁" nextLabel="▷" firstLabel="◀︎" lastLabel="▶︎" v-model="currentPage" @change="clickCallback"></t-pagination>
     <footer class="bg-gray mt-3.5 p-7 relative rounded-t-2xl text-white">
       <small>Copyright &copy; 2021 ItFumi</small>
     </footer>
