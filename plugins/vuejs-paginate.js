@@ -7,14 +7,14 @@ const settings = {
         component: TPagination,
         props: {
           classes: {
-            wrapper: 'bg-white flex mt-10 px-7 space-x-2 text-center',
-            element: 'w-14 h-14',
-            activeElement: 'w-14 h-14',
-            disabledElement: 'w-14 h-14',
+            wrapper: 'bg-gray flex p-4 rounded-2xl space-x-1 text-center',
+            element: 'w-8 h-8',
+            activeElement: 'w-8 h-8',
+            disabledElement: 'w-8 h-8',
             ellipsisElement: 'w-8 h-8 rounded-full hidden md:inline',
-            activeButton: 'border border-gray bg-gray font-bold w-full h-full rounded-2xl text-1xl text-white hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out focus:outline-none',
-            disabledButton: 'border border-gray-200 font-bold opacity-25 w-full h-full rounded-2xl text-1xl cursor-not-allowed',
-            button: 'border border-gray-200 font-bold hover:bg-amber hover:border-amber rounded-2xl text-1xl w-full h-full transition duration-500 ease-in-out focus:outline-none',
+            activeButton: 'border border-gray bg-amber font-bold w-full h-full rounded-2xl text-1xl text-gray transition duration-500 ease-in-out focus:outline-none',
+            disabledButton: 'border border-thin_gray font-bold opacity-25 w-full h-full rounded-2xl text-1xl text-thin_gray cursor-not-allowed',
+            button: 'border border-white font-bold hover:bg-amber hover:border-amber hover:text-gray rounded-2xl text-1xl text-white w-full h-full transition duration-500 ease-in-out focus:outline-none',
             ellipsis: ''
           }
         }

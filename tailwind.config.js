@@ -9,6 +9,7 @@ module.exports = {
       colors: {
         'amber': '#FFF100',
         'gray': '#383838',
+        'thin_gray': '#D1D5DB'
       },
       keyframes: {
         contentsFadeIn: {

@@ -4,6 +4,16 @@
       <h1 class="font-bold text-3xl text-gray">EC Research</h1>
       <p class="text-sm">ECサイトのUI/UXを研究するサイト</p>
     </header>
+    <div id="subContents" class="animate-contentsFadeIn flex flex-wrap px-5 mx-auto" :style="{ 'animation-delay': `2s` }">
+      <div class="md:w-1/3 p-2">
+        <div id="countDisp" class="bg-gray font-bold p-4 rounded-2xl text-2xl text-white">{{currentContents}} / {{siteItemsInit.length}}</div>
+      </div>
+      <div class="md:w-1/3 p-2">
+        <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" prevLabel="◁" nextLabel="▷" firstLabel="◀︎" lastLabel="▶︎" v-model="currentPage" @change="clickCallback" :style="{ 'animation-delay': `0.1s` }"></t-pagination>
+      </div>
+      <div class="md:w-1/3 p-2">
+      </div>
+    </div>
     <div id="mainContents" class="flex flex-wrap px-5 mx-auto">
       <div class="animate-contentsFadeIn md:w-1/3 p-2" v-for="(e, i) in siteItems"　v-bind:key="e.id" :style="{ 'animation-delay': `${i * 0.2}s` }">
         <a :href="e.url" class="bg-gray block p-4 rounded-2xl" target="_blank" rel="noopener noreferrer">
@@ -12,7 +22,6 @@
         </a>
       </div>
     </div>
-    <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" prevLabel="◁" nextLabel="▷" firstLabel="◀︎" lastLabel="▶︎" v-model="currentPage" @change="clickCallback"></t-pagination>
     <footer class="bg-gray mt-3.5 p-7 relative rounded-t-2xl text-white">
       <small>Copyright &copy; 2021 ItFumi</small>
     </footer>
@@ -54,7 +63,6 @@ export default {
         })
     },
     clickCallback: function (pageNum) {
-      console.log("あs")
       this.currentPage = Number(pageNum)
       let current = this.currentPage * this.perPage
       let start = current - this.perPage
@@ -62,6 +70,13 @@ export default {
     }
   },
   computed: {
+    currentContents: function() {
+      if(this.perPage * this.currentPage < this.siteItemsInit.length) {
+        return this.perPage * this.currentPage
+      } else {
+        return this.siteItemsInit.length
+      }
+    },
     getPageCount: function() {
       return Math.ceil(this.siteItemsInit.length / this.perPage)
     }
