@@ -1,10 +1,10 @@
 <template>
-  <div class="font-main">
-    <header class="animate-fadeInTop bg-amber rounded-b-2xl mb-3.5 mx-auto py-3.5 px-7 text-left">
+  <div class="flex flex-col font-main min-h-screen relative">
+    <header class="animate-fadeInTop bg-amber rounded-b-2xl mb-3.5 py-3.5 px-7 text-left">
       <h1 class="font-bold text-3xl text-gray">EC Research</h1>
       <p class="text-sm">ECサイトのUI/UXを研究するサイト</p>
     </header>
-    <div id="subContents" class="animate-contentsFadeIn flex flex-wrap px-5 mx-auto" :style="{ 'animation-delay': `2s` }">
+    <div id="subContents" class="animate-contentsFadeIn flex flex-wrap px-5" :style="{ 'animation-delay': `2s` }">
       <div class="md:w-1/3 p-2">
         <div id="countDisp" class="bg-gray font-bold p-4 rounded-2xl text-2xl text-white">{{currentContents}} / {{siteItemsInit.length}}</div>
       </div>
@@ -14,7 +14,7 @@
       <div class="md:w-1/3 p-2">
       </div>
     </div>
-    <div id="mainContents" class="flex flex-wrap px-5 mx-auto">
+    <div id="mainContents" class="flex flex-wrap px-5">
       <div class="animate-contentsFadeIn md:w-1/3 p-2" v-for="(e, i) in siteItems"　v-bind:key="e.id" :style="{ 'animation-delay': `${i * 0.2}s` }">
         <a :href="e.url" class="bg-gray block p-4 rounded-2xl" target="_blank" rel="noopener noreferrer">
           <img class="rounded-2xl" :src="e.image.url">
@@ -22,7 +22,8 @@
         </a>
       </div>
     </div>
-    <footer class="bg-gray mt-3.5 p-7 relative rounded-t-2xl text-white">
+    <div class="py-7"></div>
+    <footer class="bg-gray mt-auto p-7 relative rounded-t-2xl text-white">
       <small>Copyright &copy; 2021 ItFumi</small>
     </footer>
   </div>
