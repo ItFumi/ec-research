@@ -55,6 +55,13 @@ export default {
         .then((res) => {
           // 取得したコンテンツをコンポーネントのdata内に格納
           this.siteItemsInit = res.data.contents
+          // 取得したコンテンツの並び順を変更
+          for (let i = this.siteItemsInit.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * i)
+            const tmp = this.siteItemsInit[i]
+            this.siteItemsInit[i] = this.siteItemsInit[j]
+            this.siteItemsInit[j] = tmp
+          }
           let current = this.currentPage * this.perPage
           let start = current - this.perPage
           this.siteItems = res.data.contents.slice(start, current)
