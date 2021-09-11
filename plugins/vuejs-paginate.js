@@ -7,7 +7,7 @@ const settings = {
         component: TPagination,
         props: {
           classes: {
-            wrapper: 'bg-gray flex mb-4 p-4 rounded-2xl shadow-sango_box space-x-1 text-center',
+            wrapper: 'bg-gray flex p-4 rounded-2xl shadow-sango_box space-x-1 text-center',
             element: 'w-8 h-8',
             activeElement: 'w-8 h-8',
             disabledElement: 'w-8 h-8',

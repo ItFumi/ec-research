@@ -12,6 +12,7 @@
         <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" prevLabel="◁" nextLabel="▷" firstLabel="◀︎" lastLabel="▶︎" v-model="currentPage" @change="clickCallback"></t-pagination>
       </div>
       <div class="md:w-1/3 p-2">
+        <div class="bg-gray font-bold p-4 rounded-2xl text-2xl shadow-sango_box text-white"></div>
       </div>
     </div>
     <div id="mainContents" class="flex flex-wrap px-5">
