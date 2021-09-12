@@ -16,12 +16,13 @@
       </div>
     </div>
     <div id="mainContents" class="flex flex-wrap px-5">
-      <div class="animate-contentsFadeIn md:w-1/3 p-2" v-for="(e, i) in siteItems"　v-bind:key="e.id" :style="{ 'animation-delay': `${i * 0.2}s` }">
+      <div class="animate-contentsFadeIn md:w-1/3 p-2 relative" v-for="(e, i) in siteItems"　v-bind:key="e.id" :style="{ 'animation-delay': `${i * 0.2}s` }">
         <a :href="e.url" class="bg-gray block p-4 rounded-2xl shadow-sango_box" target="_blank" rel="noopener noreferrer">
           <div class="overflow-hidden rounded-2xl">
             <img class="rounded-2xl transform transition duration-500 hover:scale-125" :src="e.image.url">
           </div>
           <span class="animate-fadeInLeft block mt-2.5 font-bold text-white text-2xl" :style="{ 'animation-delay': `${i * 0.2}s` }">{{e.title}}</span>
+          <category :type="e.genre[0].type" />
         </a>
       </div>
     </div>
@@ -34,6 +35,7 @@
 
 <script>
 import axios from 'axios'
+import category from '../components/category.vue';
 
 export default {
   data() {
