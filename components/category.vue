@@ -1,5 +1,5 @@
 <template>
-    <div class="absolute bg-amber border-2 border-gray top-0.5 h-10 leading-6 left-0.5 py-2 transform rotate-12 rounded-full text-center text-gray text-2xl w-10">
+    <div :class="{'animate-rotateCategory':isActive}" class="absolute bg-amber border-2 border-gray top-0.5 h-10 leading-6 left-0.5 py-2 transform rotate-12 rounded-full text-center text-gray text-2xl w-10">
         <span v-if="type==1">
             <font-awesome-icon icon="running" />
         </span>
@@ -19,6 +19,6 @@
 </template>
 <script>
 export default {
-  props: ["type"]
+  props: ["type","isActive"]
 }
 </script>

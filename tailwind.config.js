@@ -31,6 +31,10 @@ module.exports = {
         fadeInBottom: {
           'from': { transform: 'translate3d(0, 10%, 0)', opacity: '0' },
           'to': { transform: 'none', opacity: '1' },
+        },
+        rotateCategory: {
+          'from': { transform: 'rotateZ(12deg)' },
+          'to': { transform: 'rotateZ(372deg)' },
         }
       },
       animation: {
@@ -38,11 +42,14 @@ module.exports = {
         fadeInTop: 'fadeInTop 0.5s linear 0s both',
         fadeInLeft: 'fadeInLeft 1.5s ease both',
         fadeInBottom: 'fadeInBottom 0.5s linear 0s both',
+        rotateCategory: 'rotateCategory 0.5s linear',
       }
     }
   },
   variants: {
-    extend: {opacity: ['disabled'],cursor: ['disabled']},
+    extend: {
+      animation: ['hover', 'group-hover']
+    },
   },
   plugins: [],
 }

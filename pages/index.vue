@@ -16,13 +16,13 @@
       </div>
     </div>
     <div id="mainContents" class="flex flex-wrap px-5">
-      <div class="animate-contentsFadeIn md:w-1/3 p-2 relative" v-for="(e, i) in siteItems"　v-bind:key="e.id" :style="{ 'animation-delay': `${i * 0.2}s` }">
+      <div class="animate-contentsFadeIn md:w-1/3 p-2 relative" v-for="(e, i) in siteItems"　:key="e.id" :style="{ 'animation-delay': `${i * 0.2}s` }" @mouseover="isActive=e.id">
         <a :href="e.url" class="bg-gray block p-4 rounded-2xl shadow-sango_box" target="_blank" rel="noopener noreferrer">
           <div class="overflow-hidden rounded-2xl">
-            <img class="rounded-2xl transform transition duration-500 hover:scale-125" :src="e.image.url">
+            <img :class="{'hover:scale-125':isActive}" class="rounded-2xl transform transition duration-500" :src="e.image.url">
           </div>
           <span class="animate-fadeInLeft block mt-2.5 font-bold text-white text-2xl" :style="{ 'animation-delay': `${i * 0.2}s` }">{{e.title}}</span>
-          <category :type="e.genre[0].type" />
+          <category :type="e.genre[0].type" :isActive="isActive" />
         </a>
       </div>
     </div>
@@ -45,6 +45,12 @@ export default {
       siteItems: [],
       perPage: 6,
       currentPage: 1,
+      isActive: 1
+    }
+  },
+  head () {
+    return {
+      htmlAttrs: { lang: 'ja' }
     }
   },
   mounted() {
@@ -80,6 +86,9 @@ export default {
       let current = this.currentPage * this.perPage
       let start = current - this.perPage
       this.siteItems = this.siteItemsInit.slice(start, current)
+    },
+    rotateCategory() {
+      
     }
   },
   computed: {
