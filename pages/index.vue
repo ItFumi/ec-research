@@ -12,17 +12,34 @@
         <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" prevLabel="◁" nextLabel="▷" firstLabel="◀︎" lastLabel="▶︎" v-model="currentPage" @change="clickCallback"></t-pagination>
       </div>
       <div class="md:w-1/3 p-2">
-        <div class="bg-gray font-bold p-4 rounded-2xl text-2xl shadow-sango_box text-white"></div>
+        <ul class="bg-gray flex font-bold p-4 rounded-2xl text-1xl shadow-sango_box text-center text-white">
+          <li class="border border-white h-8 cursor-pointer leading-4 py-2 rounded-full text-xs w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">ALL</li>
+          <li class="border border-white h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
+            <font-awesome-icon icon="running" />
+          </li>
+          <li class="border border-white h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
+            <font-awesome-icon icon="couch" />
+          </li>
+          <li class="border border-white h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
+            <font-awesome-icon icon="shopping-basket" />
+          </li>
+          <li class="border border-white h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
+            <font-awesome-icon icon="tv" />
+          </li>
+          <li class="border border-white h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
+            <font-awesome-icon icon="tshirt" />
+          </li>
+        </ul>
       </div>
     </div>
     <div id="mainContents" class="flex flex-wrap px-5">
-      <div class="animate-contentsFadeIn md:w-1/3 p-2 relative" v-for="(e, i) in siteItems"　:key="e.id" :style="{ 'animation-delay': `${i * 0.2}s` }" @mouseover="isActive=e.id">
+      <div class="animate-contentsFadeIn md:w-1/3 p-2 relative" v-for="(e, i) in siteItems"　:key="e.id" :style="{ 'animation-delay': `${i * 0.2}s` }">
         <a :href="e.url" class="bg-gray block p-4 rounded-2xl shadow-sango_box" target="_blank" rel="noopener noreferrer">
           <div class="overflow-hidden rounded-2xl">
-            <img :class="{'hover:scale-125':isActive}" class="rounded-2xl transform transition duration-500" :src="e.image.url">
+            <img class="hover:scale-125 rounded-2xl transform transition duration-500" :src="e.image.url">
           </div>
           <span class="animate-fadeInLeft block mt-2.5 font-bold text-white text-2xl" :style="{ 'animation-delay': `${i * 0.2}s` }">{{e.title}}</span>
-          <category :type="e.genre[0].type" :isActive="isActive" />
+          <category :type="e.genre[0].type" />
         </a>
       </div>
     </div>
@@ -44,8 +61,7 @@ export default {
       siteItemsInit: [],
       siteItems: [],
       perPage: 6,
-      currentPage: 1,
-      isActive: 1
+      currentPage: 1
     }
   },
   head () {
