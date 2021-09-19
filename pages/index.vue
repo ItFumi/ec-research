@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col font-main min-h-screen relative">
     <header class="animate-fadeInTop bg-amber shadow-sango rounded-b-2xl mb-3.5 py-3.5 px-7 text-left">
-      <h1 class="font-bold text-3xl text-gray">EC Research</h1>
-      <p class="text-sm">ECサイトのUI/UXを研究するサイト</p>
+        <h1 class="font-bold text-3xl text-gray">EC Research</h1>
+        <p class="text-sm">ECサイトのUI/UXを研究するサイト</p>
     </header>
     <div id="subContents" class="animate-contentsFadeIn flex flex-wrap px-5" :style="{ 'animation-delay': `2s` }">
       <div class="md:w-1/3 p-2">
@@ -15,19 +15,19 @@
         <ul class="bg-gray flex font-bold p-4 rounded-2xl text-1xl shadow-sango_box text-center text-white">
           <li class="bg-amber border-gray text-gray border border-white h-8 cursor-pointer leading-4 py-2 rounded-full text-xs w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">ALL</li>
           <li class="border border-white h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
-            <font-awesome-icon icon="running" />
+            <fa :icon="['fas', 'running']" />
           </li>
           <li class="border border-white h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
-            <font-awesome-icon icon="couch" />
+            <fa :icon="['fas', 'couch']" />
           </li>
           <li class="border border-white h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
-            <font-awesome-icon icon="shopping-basket" />
+            <fa :icon="['fas', 'shopping-basket']" />
           </li>
           <li class="border border-white h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
-            <font-awesome-icon icon="tv" />
+            <fa :icon="['fas', 'tv']" />
           </li>
           <li class="border border-white h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
-            <font-awesome-icon icon="tshirt" />
+            <fa :icon="['fas', 'tshirt']" />
           </li>
         </ul>
       </div>
@@ -46,6 +46,13 @@
     <div class="py-7"></div>
     <footer class="animate-fadeInBottom bg-gray mt-auto p-7 relative rounded-t-2xl text-white">
       <small>Copyright &copy; 2021 ItFumi</small>
+      <div class="flex float-right">
+        <h6 class="mr-2.5">share</h6>
+        <ul class="flex">
+          <li class="cursor-pointer hover:text-amber transition duration-500 ease-in-out"><fa :icon="['fab', 'twitter']" /></li>
+          <li class="cursor-pointer ml-2 hover:text-amber transition duration-500 ease-in-out"><fa :icon="['fab', 'facebook-f']" /></li>
+        </ul>
+      </div>
     </footer>
   </div>
 </template>
