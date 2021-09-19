@@ -72,11 +72,6 @@ export default {
       isActive: ''
     }
   },
-  head () {
-    return {
-      htmlAttrs: { lang: 'ja' }
-    }
-  },
   mounted() {
     // mount時にヘッダ一覧を取得する処理を実行
     this.getSites()
