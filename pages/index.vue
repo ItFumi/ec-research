@@ -12,21 +12,21 @@
         <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" prevLabel="◁" nextLabel="▷" firstLabel="◀︎" lastLabel="▶︎" v-model="currentPage" @change="clickCallback"></t-pagination>
       </div>
       <div class="md:w-1/3 p-2">
-        <ul class="bg-gray flex font-bold p-4 rounded-2xl text-1xl shadow-sango_box text-center text-white">
-          <li class="bg-amber border-gray text-gray border border-white h-8 cursor-pointer leading-4 py-2 rounded-full text-xs w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">ALL</li>
-          <li class="border border-white h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
+        <ul class="bg-gray flex font-bold p-4 rounded-2xl text-1xl shadow-sango_box text-center">
+          <li :class="[ genreId == '' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full text-xs w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">ALL</li>
+          <li :class="[ genreId == '1' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='1';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
             <fa :icon="['fas', 'running']" />
           </li>
-          <li class="border border-white h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
+          <li :class="[ genreId == '2' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='2';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
             <fa :icon="['fas', 'couch']" />
           </li>
-          <li class="border border-white h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
+          <li :class="[ genreId == '3' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='3';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
             <fa :icon="['fas', 'shopping-basket']" />
           </li>
-          <li class="border border-white h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
+          <li :class="[ genreId == '4' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='4';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
             <fa :icon="['fas', 'tv']" />
           </li>
-          <li class="border border-white h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
+          <li :class="[ genreId == '5' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='5';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
             <fa :icon="['fas', 'tshirt']" />
           </li>
         </ul>
@@ -39,12 +39,12 @@
             <img :class="[ isActive == e.id ? 'scale-125' : '' ]" class="rounded-2xl transform transition duration-500" :src="e.image.url">
           </div>
           <span class="animate-fadeInLeft block mt-2.5 font-bold text-white text-2xl" :style="{ 'animation-delay': `${i * 0.2}s` }">{{e.title}}</span>
-          <category :type="e.genre[0].type" :isActive="isActive" :id="e.id" />
+          <category :type="e.genre" :isActive="isActive" :id="e.id" />
         </a>
       </div>
     </div>
     <div class="py-7"></div>
-    <footer class="animate-fadeInBottom bg-gray mt-auto p-7 relative rounded-t-2xl text-white">
+    <footer class="animate-fadeInBottom bg-gray mt-auto p-7 relative rounded-t-2xl text-white" :style="{ 'animation-delay': `2s` }">
       <small>Copyright &copy; 2021 ItFumi</small>
       <div class="flex float-right">
         <h6 class="mr-2.5">share</h6>
@@ -69,17 +69,18 @@ export default {
       siteItems: [],
       perPage: 6,
       currentPage: 1,
-      isActive: ''
+      isActive: '',
+      genreId: ''
     }
   },
   mounted() {
     // mount時にヘッダ一覧を取得する処理を実行
-    this.getSites()
+    this.getSites(this.genreId)
   },
   methods: {
-    getSites() {
+    getSites(s) {
       // オプションとして、コンテンツの最大取得件数は100件と設定
-      axios.get('https://ec-research.microcms.io/api/v1/ecsite?', {
+      axios.get(`https://ec-research.microcms.io/api/v1/ecsite?${s==''?'':`filters=genre[equals]${this.genreId}`}`, {
           headers: { 'X-API-KEY': this.$config.apiKEY }
         })
         .then((res) => {
