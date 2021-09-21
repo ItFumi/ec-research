@@ -4,14 +4,11 @@
         <h1 class="font-bold text-3xl text-gray">EC Research</h1>
         <p class="text-sm">ECサイトのUI/UXを研究するサイト</p>
     </header>
-    <div id="subContents" class="animate-contentsFadeIn flex flex-wrap px-5" :style="{ 'animation-delay': `2s` }">
-      <div class="w-full md:w-1/3 p-2">
+    <div id="subContents" class="flex flex-wrap px-5">
+      <div class="animate-contentsFadeIn w-full md:w-1/3 p-2" :style="{ 'animation-delay': `1s` }">
         <div id="countDisp" class="bg-gray font-bold p-4 rounded-2xl text-2xl shadow-sango_box text-white">{{currentContents}} / {{siteItemsInit.length}}</div>
       </div>
-      <div class="hidden w-full md:w-1/3 md:block p-2">
-        <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" prevLabel="◁" nextLabel="▷" firstLabel="◀︎" lastLabel="▶︎" v-model="currentPage" @change="clickCallback"></t-pagination>
-      </div>
-      <div class="w-full md:w-1/3 p-2">
+      <div class="animate-contentsFadeIn w-full md:w-1/3 p-2" :style="{ 'animation-delay': `1.5s` }">
         <ul class="bg-gray flex font-bold p-4 rounded-2xl text-1xl shadow-sango_box text-center">
           <li :class="[ genreId == '' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full text-xs w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">ALL</li>
           <li :class="[ genreId == '1' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='1';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
@@ -31,9 +28,12 @@
           </li>
         </ul>
       </div>
+      <div class="animate-contentsFadeIn hidden w-full md:w-1/3 md:block p-2" :style="{ 'animation-delay': `2s` }">
+        <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" prevLabel="◁" nextLabel="▷" firstLabel="◀︎" lastLabel="▶︎" v-model="currentPage" @change="clickCallback"></t-pagination>
+      </div>
     </div>
     <div id="mainContents" class="flex flex-wrap px-5">
-      <div class="animate-contentsFadeIn w-full md:w-1/3 p-2 relative" v-for="(e, i) in siteItems"　:key="e.id" :style="{ 'animation-delay': `${i * 0.2}s` }" @mouseover="isActive=e.id" @mouseleave="isActive=''">
+      <div class="animate-contentsFadeIn w-full md:w-1/3 p-2 relative" v-for="(e, i) in siteItems" :key="e.id+`${t}`" :style="{ 'animation-delay': `${i * 0.2}s` }" @mouseover="isActive=e.id" @mouseleave="isActive=''">
         <a :href="e.url" class="bg-gray block p-4 rounded-2xl shadow-sango_box" target="_blank" rel="noopener noreferrer">
           <div class="overflow-hidden rounded-2xl">
             <img :class="[ isActive == e.id ? 'scale-125' : '' ]" class="w-full rounded-2xl transform transition duration-500" :src="e.image.url">
@@ -68,6 +68,7 @@ export default {
   data() {
     return {
       // APIを叩いて返ってきたコンテンツを格納する用に空の配列を用意
+      t: 0,
       siteItemsInit: [],
       siteItems: [],
       perPage: 6,
@@ -87,6 +88,7 @@ export default {
           headers: { 'X-API-KEY': this.$config.apiKEY }
         })
         .then((res) => {
+          this.t = this.t+1
           // ページネーションを1に設定
           this.currentPage = 1
           // 取得したコンテンツをコンポーネントのdata内に格納
