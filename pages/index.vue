@@ -4,11 +4,11 @@
         <h1 class="font-bold text-3xl text-gray">EC Research</h1>
         <p class="text-sm">ECサイトのUI/UXを研究するサイト</p>
     </header>
-    <div id="subContents" class="flex flex-wrap px-5">
-      <div class="animate-contentsFadeIn w-full md:w-1/3 p-2" :style="{ 'animation-delay': `1s` }">
+    <div id="subContents" class="animate-contentsFadeIn flex flex-wrap px-5" :style="{ 'animation-delay': `1.4s` }">
+      <div class="w-full md:w-1/3 p-2">
         <div id="countDisp" class="bg-gray font-bold p-4 rounded-2xl text-2xl shadow-sango_box text-white">{{currentContents}} / {{siteItemsInit.length}}</div>
       </div>
-      <div class="animate-contentsFadeIn w-full md:w-1/3 p-2" :style="{ 'animation-delay': `1.5s` }">
+      <div class="w-full md:w-1/3 p-2">
         <ul class="bg-gray flex font-bold p-4 rounded-2xl text-1xl shadow-sango_box text-center">
           <li :class="[ genreId == '' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full text-xs w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">ALL</li>
           <li :class="[ genreId == '1' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='1';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
@@ -28,7 +28,7 @@
           </li>
         </ul>
       </div>
-      <div class="animate-contentsFadeIn hidden w-full md:w-1/3 md:block p-2" :style="{ 'animation-delay': `2s` }">
+      <div class="hidden w-full md:w-1/3 md:block p-2">
         <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" prevLabel="◁" nextLabel="▷" firstLabel="◀︎" lastLabel="▶︎" v-model="currentPage" @change="clickCallback"></t-pagination>
       </div>
     </div>
@@ -62,13 +62,13 @@
 
 <script>
 import axios from 'axios'
-import category from '../components/category.vue';
 
 export default {
   data() {
     return {
       // APIを叩いて返ってきたコンテンツを格納する用に空の配列を用意
       t: 0,
+      a: 1,
       siteItemsInit: [],
       siteItems: [],
       perPage: 6,
@@ -108,7 +108,7 @@ export default {
           console.log(err)
         })
     },
-    clickCallback: function (pageNum) {
+    clickCallback: function(pageNum) {
       this.currentPage = Number(pageNum)
       let current = this.currentPage * this.perPage
       let start = current - this.perPage
