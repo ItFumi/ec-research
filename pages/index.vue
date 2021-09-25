@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col font-main min-h-screen relative">
+  <div class="flex flex-col font-main min-h-screen relative list-none">
     <header class="animate-fadeInTop bg-amber shadow-sango rounded-b-2xl mb-3.5 py-3.5 px-7 text-left">
         <h1 class="font-bold text-3xl text-gray">EC Research</h1>
         <p class="text-sm">ECサイトのUI/UXを研究するサイト</p>
@@ -52,8 +52,9 @@
       <div class="flex float-right">
         <h6 class="mr-2.5">share</h6>
         <ul class="flex">
-          <li class="cursor-pointer hover:text-amber transition duration-500 ease-in-out"><fa :icon="['fab', 'twitter']" /></li>
-          <li class="cursor-pointer ml-2 hover:text-amber transition duration-500 ease-in-out"><fa :icon="['fab', 'facebook-f']" /></li>
+          <a href="https://twitter.com/share?url=https://ec-research.netlify.com//&hashtags=EC,通販,&text=EC Research - 気になるECサイトのまとめ -" target="_blank">
+            <li class="cursor-pointer hover:text-amber transition duration-500 ease-in-out"><fa :icon="['fab', 'twitter']" /></li>
+          </a>
         </ul>
       </div>
     </footer>
