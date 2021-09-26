@@ -4,7 +4,7 @@
         <h1 class="font-bold text-3xl text-gray">EC Research</h1>
         <p class="text-sm">ECサイトのUI/UXを研究するサイト</p>
     </header>
-    <div id="subContents" class="animate-contentsFadeIn flex flex-wrap px-5" :style="{ 'animation-delay': `2s` }">
+    <div id="subContents" class="animate-contentsFadeIn flex flex-wrap px-5" :style="{ 'animation-delay': `2s` }" v-if="siteItemsInit">
       <div class="w-full md:w-1/3 p-2">
         <div id="countDisp" class="bg-gray font-bold p-4 rounded-2xl text-2xl shadow-sango_box text-white">{{currentContents}} / {{siteItemsInit.length}}</div>
       </div>
@@ -32,7 +32,7 @@
         <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" prevLabel="◁" nextLabel="▷" firstLabel="◀︎" lastLabel="▶︎" v-model="currentPage" @click="clickCallback"></t-pagination>
       </div>
     </div>
-    <div id="mainContents" class="flex flex-wrap px-5">
+    <div id="mainContents" class="flex flex-wrap px-5" v-if="siteItemsInit">
       <div class="animate-contentsFadeIn w-full md:w-1/3 p-2 relative" v-for="(e, i) in siteItems" :key="e.id+`${t}`" :style="{ 'animation-delay': `${i * 0.2}s` }" @mouseover="isActive=e.id" @mouseleave="isActive=''">
         <a :href="e.url" class="bg-gray block p-4 rounded-2xl shadow-sango_box" target="_blank" rel="noopener noreferrer">
           <div class="overflow-hidden rounded-2xl">
@@ -128,8 +128,11 @@ export default {
     },
     getPageCount: function() {
       return Math.ceil(this.siteItemsInit.length / this.perPage)
+    },
+    aaa: function() {
+      console.log("sada")
     }
-   }
+  }
 }
 </script>
 
