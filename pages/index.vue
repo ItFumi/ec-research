@@ -29,7 +29,7 @@
         </ul>
       </div>
       <div class="hidden w-full md:w-1/3 md:block p-2">
-        <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" prevLabel="◁" nextLabel="▷" firstLabel="◀︎" lastLabel="▶︎" v-model="currentPage" @change="clickCallback"></t-pagination>
+        <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" prevLabel="◁" nextLabel="▷" firstLabel="◀︎" lastLabel="▶︎" v-model="currentPage" @click="clickCallback"></t-pagination>
       </div>
     </div>
     <div id="mainContents" class="flex flex-wrap px-5">
@@ -115,7 +115,7 @@ export default {
       let current = this.currentPage * this.perPage
       let start = current - this.perPage
       this.siteItems = this.siteItemsInit.slice(start, current)
-      VueScrollTo.scrollTo("#main")
+      VueScrollTo.scrollTo("#main",1000)
     }
   },
   computed: {
