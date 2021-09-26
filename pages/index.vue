@@ -63,6 +63,7 @@
 
 <script>
 import axios from 'axios'
+import VueScrollTo from 'vue-scrollto'
 
 export default {
   data() {
@@ -114,6 +115,7 @@ export default {
       let current = this.currentPage * this.perPage
       let start = current - this.perPage
       this.siteItems = this.siteItemsInit.slice(start, current)
+      VueScrollTo.scrollTo("#main")
     }
   },
   computed: {
