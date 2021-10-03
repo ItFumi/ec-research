@@ -4,7 +4,7 @@
         <h1 class="font-bold text-3xl text-gray">EC Research</h1>
         <p class="text-sm">ECサイトのUI/UXを研究するサイト</p>
     </header>
-    <div id="subContents" class="animate-contentsFadeIn flex flex-wrap px-5" :style="{ 'animation-delay': `2s` }" v-if="siteItems">
+    <div id="subContents" class="animate-contentsFadeIn flex flex-wrap px-5" v-show=isShow :style="{ 'animation-delay': `${this.showTime}s` }">
       <div class="w-full md:w-1/3 p-2">
         <div id="countDisp" class="bg-gray font-bold p-4 rounded-2xl text-2xl shadow-sango_box text-white">{{currentContents}} / {{siteItemsInit.length}}</div>
       </div>
@@ -32,13 +32,13 @@
         <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" prevLabel="◁" nextLabel="▷" firstLabel="◀︎" lastLabel="▶︎" v-model="currentPage" @click="clickCallback"></t-pagination>
       </div>
     </div>
-    <div id="mainContents" class="flex flex-wrap px-5" v-if="siteItems">
-      <div class="animate-contentsFadeIn w-full md:w-1/3 p-2 relative" v-for="(e, i) in siteItems" :key="e.id+`${t}`" :style="{ 'animation-delay': `${i * 0.2}s` }" @mouseover="isActive=e.id" @mouseleave="isActive=''">
+    <div id="mainContents" class="flex flex-wrap px-5">
+      <div class="animate-contentsFadeIn w-full md:w-1/3 p-2 relative" v-for="(e, i) in siteItems" :key="e.id+`${t}`" :style="{ 'animation-delay': `${showTimeContents(i)}s` }" @mouseover="isActive=e.id" @mouseleave="isActive=''">
         <a :href="e.url" class="bg-gray block p-4 rounded-2xl shadow-sango_box" target="_blank" rel="noopener noreferrer">
           <div class="overflow-hidden rounded-2xl">
             <img :class="[ isActive == e.id ? 'scale-125' : '' ]" class="w-full rounded-2xl transform transition duration-500" :src="e.image.url">
           </div>
-          <span class="animate-fadeInLeft block mt-2.5 font-bold text-white text-2xl" :style="{ 'animation-delay': `${i * 0.2}s` }">{{e.title}}</span>
+          <span class="animate-fadeInLeft block mt-2.5 font-bold text-white text-2xl" :style="{ 'animation-delay': `${showTimeContents(i)}s` }">{{e.title}}</span>
           <category :type="e.genre" :isActive="isActive" :id="e.id" />
         </a>
       </div>
@@ -47,7 +47,7 @@
       <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" prevLabel="◁" nextLabel="▷" firstLabel="◀︎" lastLabel="▶︎" v-model="currentPage" @change="clickCallback"></t-pagination>
     </div>
     <div class="py-7"></div>
-    <footer class="animate-fadeInBottom bg-gray mt-auto p-7 relative rounded-t-2xl text-white" :style="{ 'animation-delay': `2s` }">
+    <footer class="animate-fadeInBottom bg-gray mt-auto p-7 relative rounded-t-2xl text-white" v-show=isShow :style="{ 'animation-delay': `${this.showTime}s` }">
       <small>Copyright &copy; 2021 ItFumi</small>
       <div class="flex float-right">
         <h6 class="mr-2.5">share</h6>
@@ -71,6 +71,8 @@ export default {
       // APIを叩いて返ってきたコンテンツを格納する用に空の配列を用意
       t: 0,
       a: 1,
+      showTime: '',
+      isShow: false,
       siteItemsInit: [],
       siteItems: [],
       perPage: 6,
@@ -128,6 +130,15 @@ export default {
     },
     getPageCount: function() {
       return Math.ceil(this.siteItemsInit.length / this.perPage)
+    },
+    showTimeContents: function() {
+      return function(i) {
+        if(this.siteItems.length - 1 == i) {
+          this.showTime = i * 0.2 + 0.5
+          this.isShow = true
+        }
+        return i * 0.2
+      }
     }
   }
 }
