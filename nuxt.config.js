@@ -10,7 +10,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'ECサイトのUI/UXを研究するサイト' },
       { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'og:image', content: '/image/site_image.png' }
+      { name: 'og:image', content: '/site_image.png' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
