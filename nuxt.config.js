@@ -8,7 +8,9 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: 'ECサイトのUI/UXを研究するサイト' },
+      { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'og:image', content: '/image/site_image.png' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
