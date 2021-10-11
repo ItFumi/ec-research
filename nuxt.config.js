@@ -8,10 +8,11 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'description', content: 'ECサイトのUI/UXを研究するサイト' },
+      { hid: 'description', name: 'description', content: 'ECサイトのUI/UXを研究するサイト' },
+      { hid: 'og:description', name: 'og:description', content: 'ECサイトのUI/UXを研究するサイト' },
+      { hid: 'og:image', name: 'og:image', content: '/site_image.png' },
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'og:image', content: 'https://ec-research.netlify.app/site_image.png' }
-    ],
+      ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
