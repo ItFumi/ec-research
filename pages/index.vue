@@ -52,7 +52,7 @@
       <div class="flex float-right">
         <h6 class="mr-2.5">share</h6>
         <ul class="flex">
-          <a href="https://twitter.com/share?url=https://ec-research.netlify.com//&hashtags=EC,通販,&text=EC Research - 気になるECサイトのまとめ -" target="_blank">
+          <a href="https://twitter.com/intent/tweet?url=https://ec-research.netlify.com//&text=EC Research - 気になるECサイトのまとめ -" target="_blank">
             <li class="cursor-pointer hover:text-amber transition duration-500 ease-in-out"><fa :icon="['fab', 'twitter']" /></li>
           </a>
         </ul>
