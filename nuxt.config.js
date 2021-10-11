@@ -3,7 +3,8 @@ export default {
   head: {
     title: 'EC Research',
     htmlAttrs: {
-      lang: 'ja'
+      lang: 'ja',
+      prefix: 'og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#”',
     },
     meta: [
       { charset: 'utf-8' }, // 文字コードにutf-8を指定
