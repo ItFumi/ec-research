@@ -11,10 +11,10 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       // ogp設定
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'og:url', content: 'https://ec-research.netlify.app/' },
-      { name: 'og:title', content: 'EC Research' },
-      { name: 'og:description', content: 'ECサイトのUI/UXを研究するサイト' },
-      { name: 'og:image', content: 'https://ec-research.netlify.app/site_image.png' },
+      { property: 'og:url', content: 'https://ec-research.netlify.app/' },
+      { property: 'og:title', content: 'EC Research' },
+      { property: 'og:description', content: 'ECサイトのUI/UXを研究するサイト' },
+      { property: 'og:image', content: 'https://ec-research.netlify.app/site_image.png' },
       ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
