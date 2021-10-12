@@ -9,16 +9,12 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'description', content: 'ECサイトのUI/UXを研究するサイト' },
       // ogp設定
+      { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'og:url', content: 'https://ec-research.netlify.app/' },
-      { name: 'og:type', content: 'website' },
-      { name: 'og:site_name', content: 'EC Research' },
       { name: 'og:title', content: 'EC Research' },
       { name: 'og:description', content: 'ECサイトのUI/UXを研究するサイト' },
       { name: 'og:image', content: 'https://ec-research.netlify.app/site_image.png' },
-      // twitterのogp設定
-      { name: 'twitter:card', content: 'summary_large_image' },
       ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
