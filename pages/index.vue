@@ -1,46 +1,50 @@
 <template>
   <div class="flex flex-col font-main min-h-screen relative list-none">
-    <header class="animate-fadeInTop bg-amber shadow-sango rounded-b-2xl mb-3.5 py-3.5 px-7 text-left">
-        <h1 class="font-bold text-3xl text-gray">EC Research</h1>
-        <p class="text-sm">ECサイトのUI/UXを研究するサイト</p>
+    <header class="animate-fadeInTop bg-amber shadow-sango rounded-b-2xl mb-3.5 py-3.5 text-left">
+        <div class="max-w-screen-xl m-auto px-7">
+          <h1 class="font-bold text-3xl text-gray">EC Research</h1>
+          <p class="text-sm">ECサイトのUI/UXを研究するサイト</p>
+        </div>
     </header>
-    <div id="subContents" class="animate-contentsFadeIn flex flex-wrap px-5" v-show=isShow :style="{ 'animation-delay': `${this.showTime}s` }">
-      <div class="w-full md:w-1/3 p-2">
-        <div id="countDisp" class="bg-gray font-bold p-4 rounded-2xl text-2xl shadow-sango_box text-white">{{currentContents}} / {{siteItemsInit.length}}</div>
+    <div class="max-w-screen-xl m-auto">
+      <div id="subContents" class="animate-contentsFadeIn flex flex-wrap px-5" v-show=isShow :style="{ 'animation-delay': `${this.showTime}s` }">
+        <div class="w-full md:w-1/3 p-2">
+          <div id="countDisp" class="bg-gray font-bold p-4 rounded-2xl text-2xl shadow-sango_box text-white">{{currentContents}} / {{siteItemsInit.length}}</div>
+        </div>
+        <div class="w-full md:w-1/3 p-2">
+          <ul class="bg-gray flex font-bold p-4 rounded-2xl text-1xl shadow-sango_box text-center">
+            <li :class="[ genreId == '' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full text-xs w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">ALL</li>
+            <li :class="[ genreId == '1' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='1';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
+              <fa :icon="['fas', 'running']" />
+            </li>
+            <li :class="[ genreId == '2' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='2';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
+              <fa :icon="['fas', 'couch']" />
+            </li>
+            <li :class="[ genreId == '3' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='3';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
+              <fa :icon="['fas', 'shopping-basket']" />
+            </li>
+            <li :class="[ genreId == '4' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='4';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
+              <fa :icon="['fas', 'tv']" />
+            </li>
+            <li :class="[ genreId == '5' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='5';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
+              <fa :icon="['fas', 'tshirt']" />
+            </li>
+          </ul>
+        </div>
+        <div class="hidden w-full md:w-1/3 md:block p-2">
+          <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" prevLabel="◁" nextLabel="▷" firstLabel="◀︎" lastLabel="▶︎" v-model="currentPage" @click="clickCallback"></t-pagination>
+        </div>
       </div>
-      <div class="w-full md:w-1/3 p-2">
-        <ul class="bg-gray flex font-bold p-4 rounded-2xl text-1xl shadow-sango_box text-center">
-          <li :class="[ genreId == '' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full text-xs w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">ALL</li>
-          <li :class="[ genreId == '1' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='1';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
-            <fa :icon="['fas', 'running']" />
-          </li>
-          <li :class="[ genreId == '2' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='2';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
-            <fa :icon="['fas', 'couch']" />
-          </li>
-          <li :class="[ genreId == '3' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='3';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
-            <fa :icon="['fas', 'shopping-basket']" />
-          </li>
-          <li :class="[ genreId == '4' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='4';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
-            <fa :icon="['fas', 'tv']" />
-          </li>
-          <li :class="[ genreId == '5' ? 'bg-amber border-amber' : 'bg-gray border-white text-white' ]" @click="genreId='5';getSites(genreId)" class="border h-8 cursor-pointer leading-4 py-2 rounded-full ml-1 w-8 hover:bg-amber hover:border-amber hover:text-gray transition duration-500 ease-in-out">
-            <fa :icon="['fas', 'tshirt']" />
-          </li>
-        </ul>
-      </div>
-      <div class="hidden w-full md:w-1/3 md:block p-2">
-        <t-pagination :current="getPageCount" :total-items="siteItemsInit.length" :per-page="perPage" prevLabel="◁" nextLabel="▷" firstLabel="◀︎" lastLabel="▶︎" v-model="currentPage" @click="clickCallback"></t-pagination>
-      </div>
-    </div>
-    <div id="mainContents" class="flex flex-wrap px-5">
-      <div class="animate-contentsFadeIn w-full md:w-1/3 p-2 relative" v-for="(e, i) in siteItems" :key="e.id+`${t}`" :style="{ 'animation-delay': `${showTimeContents(i)}s` }" @mouseover="isActive=e.id" @mouseleave="isActive=''">
-        <a :href="e.url" class="bg-gray block p-4 rounded-2xl shadow-sango_box" target="_blank" rel="noopener noreferrer">
-          <div class="overflow-hidden rounded-2xl">
-            <img :class="[ isActive == e.id ? 'scale-125' : '' ]" class="w-full rounded-2xl transform transition duration-500" :src="e.image.url">
-          </div>
-          <span class="animate-fadeInLeft block mt-2.5 font-bold text-white text-2xl" :style="{ 'animation-delay': `${showTimeContents(i)}s` }">{{e.title}}</span>
-          <category :type="e.genre" :isActive="isActive" :id="e.id" />
-        </a>
+      <div id="mainContents" class="flex flex-wrap px-5">
+        <div class="animate-contentsFadeIn w-full md:w-1/3 p-2 relative" v-for="(e, i) in siteItems" :key="e.id+`${t}`" :style="{ 'animation-delay': `${showTimeContents(i)}s` }" @mouseover="isActive=e.id" @mouseleave="isActive=''">
+          <a :href="e.url" class="bg-gray block p-4 rounded-2xl shadow-sango_box" target="_blank" rel="noopener noreferrer">
+            <div class="overflow-hidden rounded-2xl">
+              <img :class="[ isActive == e.id ? 'scale-125' : '' ]" class="w-full rounded-2xl transform transition duration-500" :src="e.image.url">
+            </div>
+            <span class="animate-fadeInLeft block mt-2.5 font-bold text-white text-2xl" :style="{ 'animation-delay': `${showTimeContents(i)}s` }">{{e.title}}</span>
+            <category :type="e.genre" :isActive="isActive" :id="e.id" />
+          </a>
+        </div>
       </div>
     </div>
     <div class="w-full md:hidden p-2 px-7">
@@ -48,14 +52,16 @@
     </div>
     <div class="py-7"></div>
     <footer class="animate-fadeInBottom bg-gray mt-auto p-7 relative rounded-t-2xl text-white" v-show=isShow :style="{ 'animation-delay': `${this.showTime}s` }">
-      <small>Copyright &copy; 2021 ItFumi</small>
-      <div class="flex float-right">
-        <h6 class="mr-2.5">share</h6>
-        <ul class="flex">
-          <a href="https://twitter.com/intent/tweet?url=https://ec-research.netlify.com/&text=EC Research - 気になるECサイトのまとめ -" target="_blank">
-            <li class="cursor-pointer hover:text-amber transition duration-500 ease-in-out"><fa :icon="['fab', 'twitter']" /></li>
-          </a>
-        </ul>
+      <div class="max-w-screen-xl m-auto px-7">
+        <small>Copyright &copy; 2021 ItFumi</small>
+        <div class="flex float-right">
+          <p class="mr-2.5">share</p>
+          <ul class="flex">
+            <a href="https://twitter.com/intent/tweet?url=https://ec-research.netlify.com/&text=EC Research - 気になるECサイトのまとめ -" target="_blank">
+              <li class="cursor-pointer hover:text-amber transition duration-500 ease-in-out"><fa :icon="['fab', 'twitter']" /></li>
+            </a>
+          </ul>
+        </div>
       </div>
     </footer>
   </div>
