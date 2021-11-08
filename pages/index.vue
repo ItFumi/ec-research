@@ -6,7 +6,7 @@
           <p class="text-sm">ECサイトのUI/UXを研究するサイト</p>
         </div>
     </header>
-    <div class="max-w-screen-xl m-auto">
+    <div class="max-w-screen-xl mx-auto">
       <div id="subContents" class="animate-contentsFadeIn flex flex-wrap px-5" v-show=isShow :style="{ 'animation-delay': `${this.showTime}s` }">
         <div class="w-full md:w-1/3 p-2">
           <div id="countDisp" class="bg-gray font-bold p-4 rounded-2xl text-2xl shadow-sango_box text-white">{{currentContents}} / {{siteItemsInit.length}}</div>
