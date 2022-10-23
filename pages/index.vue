@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col font-main min-h-screen relative list-none">
     <header class="animate-fadeInTop bg-amber shadow-sango rounded-b-2xl mb-3.5 py-3.5 text-left">
-        <div class="xl:w-1280 lg:w-1024 md:w-768 m-auto px-7">
+        <div class="xl:w-1280 lg:w-1024 md:w-768 mx-auto px-7">
           <h1 class="font-bold text-3xl text-gray">EC Research</h1>
           <p class="text-sm">ECサイトのUI/UXを研究するサイト</p>
         </div>
