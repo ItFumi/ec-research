@@ -15,6 +15,11 @@ module.exports = {
         'sango': '0 3px 6px rgb(0 0 0 / 18%);',
         'sango_box': '0 0 3px 0 rgb(0 0 0 / 12%), 0 2px 3px 0 rgb(0 0 0 / 22%);'
       },
+      width: {
+        '1280': '1280px',
+        '1024': '1024px',
+        '768': '768px'
+      },
       keyframes: {
         contentsFadeIn: {
           'from': { opacity: '0' },

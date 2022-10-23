@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col font-main min-h-screen relative list-none">
     <header class="animate-fadeInTop bg-amber shadow-sango rounded-b-2xl mb-3.5 py-3.5 text-left">
-        <div class="max-w-screen-xl m-auto px-7">
+        <div class="xl:w-1280 lg:w-1024 md:w-768 m-auto px-7">
           <h1 class="font-bold text-3xl text-gray">EC Research</h1>
           <p class="text-sm">ECサイトのUI/UXを研究するサイト</p>
         </div>
     </header>
-    <div class="max-w-screen-xl mx-auto">
+    <div class="xl:w-1280 lg:w-1024 md:w-768 mx-auto">
       <div id="subContents" class="animate-contentsFadeIn flex flex-wrap px-5" v-show=isShow :style="{ 'animation-delay': `${this.showTime}s` }">
         <div class="w-full md:w-1/3 p-2">
           <div id="countDisp" class="bg-gray font-bold p-4 rounded-2xl text-2xl shadow-sango_box text-white">{{currentContents}} / {{siteItemsInit.length}}</div>
